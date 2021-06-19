@@ -18,4 +18,8 @@ app.use(cors());
 
 app.use('/api/board',BoardRouter);
 
+process.on('SIGINT', () => {
+    process.exit();
+});
+
 app.listen(3001, () => console.log("Server is running at port 3001"))
