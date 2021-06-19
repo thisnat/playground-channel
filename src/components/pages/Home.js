@@ -1,9 +1,20 @@
-import React from 'react';
+import { useEffect } from 'react'
+import { connect } from 'react-redux';
+
+import { fetchBoard } from '../../actions/BoardAction'
 
 import Board from '../Board'
 
-const Home = () => {
+const Home = (props) => {
+
+    const { data,dispatch } = props;
+
+    useEffect(() => {
+        dispatch(fetchBoard());
+    },[dispatch])
+
     return (
+
         <div>
             <div className="container">
                 <div className="my-3">
@@ -11,17 +22,29 @@ const Home = () => {
                     <p>please choose the board from the list below.</p>
                 </div>
                 <div>
-                    <Board title="movie" sub="Lorem ipsum dolor sit amet."/>
-                    <Board title="geek" sub="Lorem ipsum dolor sit amet."/>
-                    <Board title="game" sub="Lorem ipsum dolor sit amet."/>
-                    <Board title="music" sub="Lorem ipsum dolor sit amet."/>
-                    <Board title="random" sub="Lorem ipsum dolor sit amet."/>
-                    <Board title="anime" sub="Lorem ipsum dolor sit amet."/>
-                    <Board title="subculture" sub="Lorem ipsum dolor sit amet."/>
+                    {
+                        Object.keys(data.boardData).length > 0
+                        ? data.boardData.map((data,index) => (
+                            <Board key={index} data={data}/>
+                        ))
+                        : <h1>loading...</h1>
+                    }
+
+                    {
+                        !data.boardFetchError
+                        ? null
+                        : <h1>fetch error</h1>
+                    }
                 </div>
             </div>
         </div>
     );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        data : state
+    }
+}
+
+export default connect(mapStateToProps)(Home);

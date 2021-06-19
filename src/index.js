@@ -5,12 +5,17 @@ import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import store from './store/store'
+import { Provider } from 'react-redux';
+
 import Navbar from './components/navbar'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
-    <App />
+    <Provider store = {store}>
+      <Navbar />
+      <App />
+    </Provider>  
   </React.StrictMode>,
   document.getElementById('root')
 );
