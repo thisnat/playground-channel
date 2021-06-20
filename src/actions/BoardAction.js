@@ -24,3 +24,15 @@ export const fetchBoard = () => {
         });
     }
 }
+
+export const fetchBoardById = (id) => {
+    return (dispatch,getState) => {
+        axios.get(`http://localhost:3001/api/board/id/${id}`)
+        .then((res) => {
+            dispatch(fetchBoardDone(res.data))
+        })
+        .catch((err) => {
+            dispatch(fetchBoardError())
+        });
+    }
+}
