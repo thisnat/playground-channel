@@ -1,7 +1,7 @@
 const NotFound = () => {
     return (
-        <div className="container">
-            <p className="lead">board not found!</p>
+        <div style={{textAlign:"center",marginTop:"10rem"}}>
+            <p className="lead" style={{fontSize:64}}>board not found!</p>
         </div>
     );
 };

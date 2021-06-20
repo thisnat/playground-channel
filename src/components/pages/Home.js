@@ -8,6 +8,7 @@ import Board from '../cards/Board'
 const Home = (props) => {
 
     const { data,dispatch } = props;
+    const { BoardStore } = data;
 
     useEffect(() => {
         dispatch(fetchBoard());
@@ -23,15 +24,15 @@ const Home = (props) => {
                 </div>
                 <div>
                     {
-                        Object.keys(data.boardData).length > 0
-                        ? data.boardData.map((data,index) => (
+                        Object.keys(BoardStore.boardData).length > 0
+                        ? BoardStore.boardData.map((data,index) => (
                             <Board key={index} data={data}/>
                         ))
                         : <h1>loading...</h1>
                     }
 
                     {
-                        !data.boardFetchError
+                        !BoardStore.boardFetchError
                         ? null
                         : <h1>fetch error</h1>
                     }

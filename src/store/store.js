@@ -1,8 +1,8 @@
 import { createStore,applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import BoardReducer from '../reducers/BoardReducer'
+import rootReducer from '../reducers'
 
-const store = createStore(BoardReducer,applyMiddleware(thunk));
+const store = createStore(rootReducer,applyMiddleware(thunk));
 
 export default store;

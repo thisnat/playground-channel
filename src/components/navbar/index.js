@@ -7,7 +7,7 @@ const index = () => {
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/" style={{ fontFamily: "Comic sans Ms" }}>playground</a>
                     <span className="navbar-text">
-                        current id : q89w4r9
+                        current id : q89w4r9 (mockup)
                     </span>
                 </div>
             </nav>
