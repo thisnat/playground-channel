@@ -15,6 +15,16 @@ router.route('/').get((req, res) => {
     })
 });
 
+router.route('/id/:id').get((req, res) => {
+    boardSchema.findOne({'url' : req.params.id}, (error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.json(data);
+        }
+    })
+});
+
 router.route('/add').post((req, res, next) => {
     boardSchema.create(req.body, (error, data) => {
         if (error) {
