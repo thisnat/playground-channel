@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchBoard } from '../../actions/BoardAction'
 
-import Board from '../Board'
+import Board from '../cards/Board'
 
 const Home = (props) => {
 

@@ -8,6 +8,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Pages.Home} />
+          <Route exact path="/:id" component={Pages.Board} />
         </Switch>
       </Router>
     </div>

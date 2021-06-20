@@ -1,7 +1,8 @@
 import Home from './Home'
+import Board from './Board'
 
 const pages = {
-    Home
+    Home,Board
 }
 
 export default pages;
