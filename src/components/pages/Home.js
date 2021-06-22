@@ -14,6 +14,16 @@ const Home = (props) => {
         dispatch(fetchBoard());
     },[dispatch])
 
+
+    const displayErrorMsg = () => {
+        let spinner = document.getElementById('spinner');
+        if (spinner !== null){
+            spinner.remove();
+        }
+
+        return <h1>fetch error!</h1>
+    }
+
     return (
 
         <div>
@@ -28,15 +38,15 @@ const Home = (props) => {
                         ? boardData.map((data,index) => (
                             <Board key={index} data={data}/>
                         ))
-                        : <div className="spinner-border" role="status">
-                            <span class="visually-hidden">Loading...</span>
+                        : <div className="spinner-border" role="status" id="spinner">
+                            <span className="visually-hidden">Loading...</span>
                           </div>
                     }
 
                     {
                         !boardFetchError
                         ? null
-                        : <h1>fetch error</h1>
+                        : displayErrorMsg()
                     }
                 </div>
             </div>
