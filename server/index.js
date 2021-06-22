@@ -18,6 +18,7 @@ app.use(cors());
 
 app.use('/api/board',routes.BoardRouter);
 app.use('/api/topic',routes.TopicRouter);
+app.use('/api/comment',routes.CommentRouter);
 
 process.on('SIGINT', () => {
     process.exit();
