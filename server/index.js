@@ -5,7 +5,7 @@ const db = require('./config/db');
 
 const routes = require('./routes')
 
-mongoose.connect(db.db,{useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify: false}).then(() =>{
+mongoose.connect(db.db,{useNewUrlParser: true,useUnifiedTopology: true,useFindAndModify: false,useCreateIndex: true}).then(() =>{
     console.log('db connected');
 },err => {
     console.log(`cant connect db : ${err}`);

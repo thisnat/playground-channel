@@ -1,23 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 
 let topicSchema = new Schema({
     board: {
         type: String
     },
+    topicId: {
+        type: Number
+    },
     title: {
         type: String
     },
     postCount: {
-        type : Number
+        type: Number
     },
     lastUpdate: {
-        type : Date,
+        type: Date,
         default: Date.now
     },
     created_at: {
-        type : Date,
+        type: Date,
         default: Date.now
     },
     status: {
@@ -25,6 +29,8 @@ let topicSchema = new Schema({
     }
 }, {
     collection: "topic"
-})
+});
 
-module.exports = mongoose.model('Topic', topicSchema);
+topicSchema.plugin(AutoIncrement, {inc_field: 'topicId'});
+
+module.exports = mongoose.model('Topic', topicSchema);;
