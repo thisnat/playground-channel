@@ -24,3 +24,15 @@ export const fetchTopicByBoardUrl = (url) => {
         });
     }
 }
+
+export const fetchTopicByTopicId = (url) => {
+    return (dispatch,getState) => {
+        axios.get(`http://localhost:3001/api/topic/topic/${url}`)
+        .then((res) => {
+            dispatch(fetchTopicDone(res.data))
+        })
+        .catch((err) => {
+            dispatch(fetchTopicError())
+        });
+    }
+}
