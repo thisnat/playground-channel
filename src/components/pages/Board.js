@@ -9,7 +9,7 @@ import NotFound from './NotFound';
 const Board = (props) => {
 
     const { data,dispatch,match } = props;
-    const { BoardStore } = data;
+    const { boardData } = data;
 
     useEffect(() => {
         dispatch(fetchBoardById(match.params.id));
@@ -18,7 +18,7 @@ const Board = (props) => {
     return (
         <div>
             {
-                BoardStore.boardData === null
+                boardData === null
                 ? <NotFound />
                 : <TopicList />
             }
@@ -28,7 +28,7 @@ const Board = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        data : state
+        data : state.BoardStore
     }
 }
 

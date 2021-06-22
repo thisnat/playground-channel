@@ -1,13 +1,14 @@
 import dateFormat from "dateformat";
 
-const Topic = ({data}) => {
+const Topic = ({data,boardUrl}) => {
 
     const date = Date.parse(data.lastUpdate);
+    const url = `${boardUrl}/${data.topicId}`
 
     return (
         <div className="card my-3 mx-3 p-3">
-            <h4>{data.title}</h4>
-            <p>total posts : <strong>{data.postCount}</strong> <br /> last updated : <strong>{dateFormat(date,"dd/mmmm/yyyy - HH:mm:ss")}</strong></p>
+            <a href={url}>{data.title}</a>
+            <p>total posts : <strong>{data.postCount}</strong> <br /> last updated : <strong>{dateFormat(date,"dd/mmmm/yyyy - HH:MM:ss")}</strong></p>
         </div>
     );
 };

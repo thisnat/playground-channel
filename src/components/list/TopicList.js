@@ -24,7 +24,7 @@ const TopicList = (props) => {
                 {
                     Object.keys(TopicStore.topicData).length > 0
                         ? TopicStore.topicData.map((data, index) => (
-                            <Topic key={index} data = {data}/>
+                            <Topic key={index} data = {data} boardUrl= {boardData.url}/>
                         ))
                         : <h1>no topic!</h1>
                 }

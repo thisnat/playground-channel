@@ -8,7 +8,7 @@ import Board from '../cards/Board'
 const Home = (props) => {
 
     const { data,dispatch } = props;
-    const { BoardStore } = data;
+    const { boardData,boardFetchError } = data;
 
     useEffect(() => {
         dispatch(fetchBoard());
@@ -24,15 +24,17 @@ const Home = (props) => {
                 </div>
                 <div>
                     {
-                        Object.keys(BoardStore.boardData).length > 0
-                        ? BoardStore.boardData.map((data,index) => (
+                        Object.keys(boardData).length > 0
+                        ? boardData.map((data,index) => (
                             <Board key={index} data={data}/>
                         ))
-                        : <h1>loading...</h1>
+                        : <div className="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                          </div>
                     }
 
                     {
-                        !BoardStore.boardFetchError
+                        !boardFetchError
                         ? null
                         : <h1>fetch error</h1>
                     }
@@ -44,7 +46,7 @@ const Home = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        data : state
+        data : state.BoardStore
     }
 }
 
