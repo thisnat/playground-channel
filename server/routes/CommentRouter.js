@@ -15,6 +15,7 @@ router.route('/').get((req, res) => {
     })
 });
 
+//req.params.id must be int fix soon 
 router.route('/id/:id').get((req, res) => {
     commentSchema.find({'topicId' : req.params.id}, (error, data) => {
         if (error) {

@@ -15,6 +15,7 @@ router.route('/').get((req, res) => {
     })
 });
 
+//req.params.id must be int fix soon 
 router.route('/board/:id').get((req, res) => {
     topicSchema.find({'board' : req.params.id}, (error, data) => {
         if (error) {
@@ -25,6 +26,8 @@ router.route('/board/:id').get((req, res) => {
     })
 });
 
+
+//req.params.id must be int fix soon 
 router.route('/topic/:id').get((req, res) => {
     topicSchema.find({'topicId' : req.params.id}, (error, data) => {
         if (error) {
