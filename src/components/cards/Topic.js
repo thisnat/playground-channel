@@ -1,9 +1,9 @@
 import dateFormat from "dateformat";
 
-const Topic = ({data,boardUrl}) => {
+const Topic = ({data}) => {
 
     const date = Date.parse(data.lastUpdate);
-    const url = `${boardUrl}/${data.topicId}`
+    const url = `topic/${data.topicId}`
 
     return (
         <div className="card my-3 mx-3 p-3">
