@@ -10,6 +10,7 @@ function App() {
           <Route exact path="/" component={Pages.Home} />
           <Route exact path="/:id" component={Pages.Board} />
           <Route path="/topic/:topicId" component={Pages.Topic} />
+          <Route path="/admin/mastermind" component={Pages.Admin} />
         </Switch>
       </Router>
     </div>
