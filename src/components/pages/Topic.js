@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchCommentById } from '../../actions/CommentAction';
 import { fetchTopicByTopicId } from '../../actions/TopicAction';
@@ -10,47 +10,43 @@ import NotFound from '../pages/NotFound';
 
 const Topic = (props) => {
 
-    const { dispatch,match,data } = props;
-    const { CommentStore,TopicStore } = data;
+    const { match } = props;
+    const dispatch = useDispatch();
+    const TopicStore = useSelector((state) => state.TopicStore);
+    const CommentStore = useSelector((state) => state.CommentStore);
 
     useEffect(() => {
         dispatch(fetchCommentById(match.params.topicId));
         dispatch(fetchTopicByTopicId(match.params.topicId));
-    },[dispatch,match])
+    }, [dispatch, match])
 
 
     //very bad render logic, fix soon
     return (
         <div className="container mt-3">
-
             {
-                Object.keys(TopicStore.topicData).length > 0
-                ? <div>
-                    <h5 style={{float:"right"}}>total posts : {TopicStore.topicData[0].postCount}</h5>
-                    <h1>{TopicStore.topicData[0].title}</h1>
-                </div>
-                : <NotFound />
+                TopicStore.topicData.length > 0
+                    ? <div>
+                        <h5 style={{ float: "right" }}>total posts : {TopicStore.topicData[0].postCount}</h5>
+                        <h1>{TopicStore.topicData[0].title}</h1>
+                    </div>
+                    : <NotFound />
             }
             {
-                Object.keys(CommentStore.commentData).length > 0 
-                ? CommentStore.commentData.map((data,index) => (
-                    <Comment key = {index} data = {data} />
-                ))
-                : null
+                CommentStore.commentData.length > 0
+                    ? CommentStore.commentData.map((data, index) => (
+                        <Comment key={index} data={data} />
+                    ))
+                    : null
             }
             {
-                Object.keys(TopicStore.topicData).length > 0
-                ? <CommentBox />
-                : null
+                TopicStore.topicData.length > 0
+                    ? <CommentBox />
+                    : null
             }
         </div>
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        data : state
-    }
-}
 
-export default connect(mapStateToProps)(Topic);
+export default Topic;

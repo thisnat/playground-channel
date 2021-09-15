@@ -1,14 +1,15 @@
 import { useEffect } from 'react'
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchBoard } from '../../actions/BoardAction'
 
 import Board from '../cards/Board'
 
-const Home = (props) => {
+const Home = () => {
 
-    const { data,dispatch } = props;
-    const { boardData,boardFetchError } = data;
+    const dispatch = useDispatch();
+    const boardData = useSelector((state) => state.BoardStore.boardData);
+    const boardFetchError = useSelector((state) => state.BoardStore.boardFetchError);
 
     useEffect(() => {
         dispatch(fetchBoard());
@@ -54,10 +55,4 @@ const Home = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        data : state.BoardStore
-    }
-}
-
-export default connect(mapStateToProps)(Home);
+export default Home;

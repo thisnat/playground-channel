@@ -3,7 +3,7 @@ import dateFormat from "dateformat";
 const Topic = ({data}) => {
 
     const date = Date.parse(data.lastUpdate);
-    const url = `topic/${data.topicId}`
+    const url = `/topic/${data.topicId}`
 
     return (
         <div className="card my-3 mx-3 p-3">

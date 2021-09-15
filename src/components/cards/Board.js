@@ -1,7 +1,7 @@
 const Board = ({data}) => {
     return (
         <div className="card my-3 mx-3 p-3">
-            <a href={data.url} style={{fontSize:32}}>{data.title}</a>
+            <a href={`/board/${data.url}`} style={{fontSize:32}}>{data.title}</a>
             <p>{data.desc}</p>
         </div>
     );

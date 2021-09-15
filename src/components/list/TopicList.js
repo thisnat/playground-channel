@@ -1,19 +1,11 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-
+import { useSelector } from 'react-redux';
 import Topic from '../cards/Topic'
 
-import { fetchTopicByBoardUrl } from '../../actions/TopicAction'
+const TopicList = () => {
 
-const TopicList = (props) => {
-
-    const { data, dispatch } = props;
-    const { TopicStore, BoardStore } = data;
+    const TopicStore = useSelector((state) => state.TopicStore)
+    const BoardStore = useSelector((state) => state.BoardStore)
     const { boardData } = BoardStore;
-
-    useEffect(() => {
-        dispatch(fetchTopicByBoardUrl(boardData.url));
-    }, [dispatch, boardData])
 
     return (
         <div className="container mt-3">
@@ -33,10 +25,4 @@ const TopicList = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        data: state
-    }
-}
-
-export default connect(mapStateToProps)(TopicList);
+export default TopicList;

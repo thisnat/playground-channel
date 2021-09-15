@@ -1,19 +1,23 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchBoardById } from '../../actions/BoardAction';
+import { fetchTopicByBoardUrl } from '../../actions/TopicAction'
 
 import TopicList from '../list/TopicList';
 import NotFound from './NotFound';
 
 const Board = (props) => {
 
-    const { data,dispatch,match } = props;
-    const { boardData } = data;
+    const dispatch = useDispatch();
+    const boardData = useSelector((state) => state.BoardStore.boardData);
+    const { match } = props;
+    
 
     useEffect(() => {
         dispatch(fetchBoardById(match.params.id));
-    },[dispatch,match])
+        dispatch(fetchTopicByBoardUrl(boardData.url));
+    },[dispatch,match,boardData.url])
 
     return (
         <div>
@@ -26,10 +30,4 @@ const Board = (props) => {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        data : state.BoardStore
-    }
-}
-
-export default connect(mapStateToProps)(Board);
+export default Board;
